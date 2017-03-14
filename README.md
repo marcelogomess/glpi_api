@@ -1,3 +1,3 @@
 # glpi_api
-Just a app to start with glpi api communitacion.
-glpi-project.org
+Just a python lib for glpi api communication.
+More info see glpi-project.org
