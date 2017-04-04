@@ -62,6 +62,24 @@ class Api:
         session = get(self.base_url+target_url, headers=sessiondata)
         return(session.json())
 
+    def getFullSession(self):
+        target_url = 'getFullSession/'
+        sessiondata = {'Content-Type': 'application/json', \
+                       'Session-Token':self.session_token,'App-Token':self.app_token}
+        session = get(self.base_url+target_url, headers=sessiondata)
+        return(session.json())
+
+    def getItem(self,item_type, item_id, args=None):
+        if args is None:
+            target_url = item_type+'/'+'/'+item_id
+        else:
+            target_url = item_type+'/'+'/'+item_id+'?'+args
+        sessiondata = {'Content-Type': 'application/json', \
+                       'Session-Token':self.session_token,'App-Token':self.app_token}
+        session = get(self.base_url+target_url, headers=sessiondata)
+        return(session.json())
+
+
     def getTicket(self, ticket_id):
         target_url = 'Ticket/'+str(ticket_id)+'?expand_dropdowns=true'
         sessiondata = {'Content-Type': 'application/json',\
