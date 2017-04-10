@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from sqlite3.dbapi2 import paramstyle
 
 from requests import post, get
 
@@ -98,3 +99,31 @@ class Api:
                        'Session-Token':self.session_token,'App-Token':self.app_token}
         session = get(self.base_url+target_url, headers=sessiondata)
         return(session.json())
+
+    def getMultipleItems(self, items_dict):
+        for items in items_dict['items']:
+            items_list = self.getItem(item_type='Ticket',item_id='69130',args='expand_dropdowns=true')
+        return(items_list)
+
+    def listSearhItemsOptions(self, item_type, args=None):
+        if args is None:
+            target_url = 'listSearchOptions/'+item_type+'/'
+        else:
+            target_url = 'listSearchOptions/'+item_type+'/'+'?'+args
+
+        sessiondata = {'Content-Type': 'application/json', \
+                       'Session-Token':self.session_token,'App-Token':self.app_token}
+        session = get(self.base_url+target_url, headers=sessiondata)
+        return(session.json())
+
+    def searchItems(self):
+        return(True)
+
+    def addItems(self):
+        return(True)
+
+    def updateItems(self):
+        return(True)
+
+    def deleteItems(self):
+        return(True)
