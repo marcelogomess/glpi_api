@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from requests import post, get
+from requests import post, get, put, delete
 
 
 class Api:
@@ -125,8 +125,12 @@ class Api:
         return (session.json())
 
 
-    def updateItems(self):
-        return(True)
+    def updateItems(self,item_type, item_id, item_data):
+        target_url = item_type+'/'+str(item_id)
+        sessiondata = {'Content-Type': 'application/json',
+                       'Session-Token': self.session_token, 'App-Token': self.app_token}
+        session = put(self.base_url + target_url, headers=sessiondata, json=item_data)
+        return (session.json())
 
     def deleteItems(self):
         return(True)
